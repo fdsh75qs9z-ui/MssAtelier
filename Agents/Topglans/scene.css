@@ -1,0 +1,666 @@
+/* =======================================================
+   Scene styles — light, software-like, designed for talk-over
+   ======================================================= */
+
+:root {
+  --bg: #f6f8fc;
+  --canvas: #ffffff;
+  --ink: #202124;
+  --ink-2: #5f6368;
+  --ink-3: #9aa0a6;
+  --line: #e8eaed;
+  --line-2: #dadce0;
+  --blue: #1a73e8;
+  --blue-soft: #e8f0fe;
+  --green: #34a853;
+  --green-soft: #e6f4ea;
+  --red: #ea4335;
+  --red-soft: #fce8e6;
+  --orange: #f29900;
+  --orange-soft: #fef7e0;
+  --gold: #c9a86a;
+  --shadow-sm: 0 1px 2px rgba(60,64,67,.08), 0 1px 3px rgba(60,64,67,.12);
+  --shadow-md: 0 4px 8px rgba(60,64,67,.10), 0 1px 3px rgba(60,64,67,.10);
+  --shadow-lg: 0 20px 50px -10px rgba(60,64,67,.25), 0 6px 18px rgba(60,64,67,.10);
+  --display: 'Fraunces', serif;
+  --sans: 'Inter', 'Manrope', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  background:
+    radial-gradient(900px circle at 25% 20%, #eef2f9, transparent 60%),
+    radial-gradient(800px circle at 75% 80%, #f0eee8, transparent 60%),
+    #e9ecf2;
+}
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: 0; color: inherit; }
+input { font-family: inherit; }
+
+.stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px;
+}
+
+.chyron {
+  position: fixed; top: 22px; left: 32px; right: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100; pointer-events: none;
+}
+.chyron-label {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(32,33,36,0.04);
+  border: 1px solid rgba(32,33,36,0.10);
+  border-radius: 100px;
+  font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-2); font-weight: 500;
+}
+.chyron-sub {
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  font-size: 0.92rem; color: var(--ink-2); margin-left: 12px;
+}
+.chyron-brand {
+  font-family: var(--display); font-style: italic;
+  font-size: 0.92rem; color: var(--ink-3);
+}
+
+/* ======= CHAPTER fade ======= */
+.chapter {
+  position: absolute; inset: 60px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.chapter.active { opacity: 1; pointer-events: auto; }
+
+/* ======= GMAIL-LIKE APP ======= */
+.app {
+  width: 1080px;
+  height: 640px;
+  background: var(--canvas);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  border: 1px solid var(--line);
+}
+.gmail-side {
+  background: #f6f8fc;
+  padding: 18px 0 18px 0;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column;
+}
+.gmail-compose {
+  align-self: flex-start;
+  margin: 0 18px 22px;
+  padding: 13px 22px;
+  background: linear-gradient(180deg, #fff 0%, #f6f8fc 100%);
+  box-shadow: 0 1px 3px rgba(60,64,67,.16);
+  border-radius: 16px;
+  font-weight: 500; font-size: 0.86rem;
+  color: var(--ink);
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid transparent;
+}
+.gmail-compose i { color: var(--blue); }
+.gmail-side > ul li, .gmail-labels > div {
+  display: flex; align-items: center; gap: 14px;
+  padding: 8px 18px;
+  font-size: 0.84rem;
+  color: var(--ink-2);
+  cursor: default;
+}
+.gmail-side > ul li.active {
+  background: var(--blue-soft);
+  color: var(--blue);
+  border-radius: 0 100px 100px 0;
+  margin-right: 14px;
+  font-weight: 500;
+}
+.gmail-side > ul li i { width: 18px; text-align: center; }
+.gmail-side > ul li .badge {
+  margin-left: auto;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.66rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.gmail-labels {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.lbl-h {
+  padding: 0 18px 8px;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-3); display: block;
+}
+.lbl-dot {
+  width: 10px; height: 10px; border-radius: 3px;
+  background: var(--ink-3);
+  display: inline-block;
+}
+.lbl-dot.green { background: var(--green); }
+.lbl-dot.blue { background: var(--blue); }
+.lbl-dot.orange { background: var(--orange); }
+.lbl-dot.red { background: var(--red); }
+.lbl-dot.gray { background: var(--ink-3); }
+
+/* Gmail list head */
+.gmail-list { display: flex; flex-direction: column; min-width: 0; }
+.gmail-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.gmail-head i { color: var(--ink-3); }
+.gmail-head input {
+  flex: 1; max-width: 540px;
+  padding: 8px 14px;
+  background: #f1f3f4;
+  border: none; border-radius: 8px;
+  font-size: 0.86rem; color: var(--ink-2);
+}
+.gmail-user {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.86rem;
+}
+
+.gmail-rows { overflow: hidden; }
+.row {
+  display: grid;
+  grid-template-columns: 28px 24px 220px 1fr 96px;
+  align-items: center; gap: 14px;
+  padding: 11px 22px;
+  border-bottom: 1px solid #f1f3f4;
+  font-size: 0.86rem;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s;
+}
+.row.in { opacity: 1; transform: translateY(0); }
+.row.unread { font-weight: 500; }
+.row .row-star { color: var(--ink-3); font-size: 0.85rem; }
+.row .row-label { display: flex; gap: 6px; flex-wrap: wrap; }
+.row .row-from { font-weight: 600; color: var(--ink); }
+.row .row-subject { color: var(--ink); }
+.row .row-subject em { font-style: normal; color: var(--ink-2); font-weight: 400; }
+.row .row-time { text-align: right; color: var(--ink-2); font-size: 0.78rem; }
+.row .row-label .lbl {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 1px 8px; border-radius: 4px;
+  font-size: 0.7rem; font-weight: 500;
+  border: 1px solid var(--line-2);
+  background: #f8f9fa;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  white-space: nowrap;
+}
+.row .row-label .lbl.appear { opacity: 1; }
+.row .row-label .lbl.green { background: var(--green-soft); color: var(--green); border-color: rgba(52,168,83,.3); }
+.row .row-label .lbl.blue { background: var(--blue-soft); color: var(--blue); border-color: rgba(26,115,232,.3); }
+.row .row-label .lbl.orange { background: var(--orange-soft); color: #b06a00; border-color: rgba(242,153,0,.3); }
+.row .row-label .lbl.red { background: var(--red-soft); color: var(--red); border-color: rgba(234,67,53,.3); }
+.row .row-label .lbl.gray { background: #f1f3f4; color: var(--ink-2); }
+.row.highlight { background: linear-gradient(90deg, #fff5e0, #fff); }
+
+/* ======= GMAIL READER ======= */
+.gmail-reader {
+  display: flex; flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+.gmail-bar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-3);
+}
+.gmail-bar i { font-size: 0.92rem; }
+.dot-sep { width: 1px; height: 16px; background: var(--line-2); }
+.gmail-pill {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.74rem; font-weight: 500;
+  background: var(--green-soft); color: var(--green);
+  border: 1px solid rgba(52,168,83,.3);
+}
+.gmail-pill.green .lbl-dot { background: var(--green); }
+
+.gmail-msg, .gmail-draft {
+  padding: 26px 36px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.gmail-msg h2 {
+  font-family: var(--sans); font-weight: 500;
+  font-size: 1.4rem; margin-bottom: 14px;
+}
+.gmail-from {
+  display: flex; align-items: center; gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+.avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.94rem;
+  flex-shrink: 0;
+}
+.avatar-m { background: #ec407a; }
+.avatar-t { background: #4285f4; }
+.avatar-s { background: #5e35b1; }
+.avatar-l { background: #00897b; }
+.avatar-j { background: #d97706; }
+.avatar-a { background: #e91e63; }
+.gmail-from strong { font-weight: 600; }
+.gmail-from .from-addr { color: var(--ink-2); font-size: 0.84rem; font-weight: 400; }
+.gmail-from small { color: var(--ink-2); }
+
+.gmail-body { font-size: 0.94rem; line-height: 1.7; color: var(--ink); }
+.gmail-body p {
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.gmail-body p.in { opacity: 1; transform: translateY(0); }
+.gmail-body strong { font-weight: 600; }
+
+.gmail-draft {
+  background: linear-gradient(180deg, #fffaef 0%, #fff 100%);
+  border-left: 3px solid var(--gold);
+  margin: 0;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.gmail-draft.in { opacity: 1; }
+.draft-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.draft-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px;
+  background: rgba(201,168,106,0.12);
+  border: 1px solid rgba(201,168,106,0.35);
+  border-radius: 100px;
+  font-size: 0.76rem; color: #8a6e2f; font-weight: 500;
+}
+.draft-time { font-size: 0.78rem; color: var(--ink-3); }
+
+.draft-actions {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+.btn-send {
+  padding: 9px 22px;
+  background: var(--blue); color: #fff;
+  border-radius: 100px; font-weight: 500; font-size: 0.86rem;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.3s;
+}
+.btn-send.glow {
+  box-shadow: 0 0 0 0 rgba(26,115,232,0.4), 0 4px 12px rgba(26,115,232,0.3);
+  animation: glow-blue 1.6s ease-in-out infinite;
+}
+@keyframes glow-blue {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26,115,232,0.4), 0 4px 12px rgba(26,115,232,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(26,115,232,0), 0 4px 14px rgba(26,115,232,0.5); }
+}
+.btn-edit {
+  padding: 9px 18px;
+  background: #f1f3f4; color: var(--ink);
+  border-radius: 100px; font-weight: 500; font-size: 0.86rem;
+}
+.draft-note { margin-left: auto; font-size: 0.74rem; color: var(--ink-3); font-style: italic; }
+
+/* ======= GOOGLE CALENDAR-LIKE ======= */
+.gcal {
+  width: 880px;
+  height: 600px;
+  display: flex; flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.gcal-head {
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.gcal-title { font-family: var(--display); font-weight: 400; font-size: 1.4rem; }
+.gcal-pill {
+  padding: 4px 12px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500;
+}
+.gcal-user {
+  margin-left: auto;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--blue); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.86rem;
+}
+.gcal-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  overflow: hidden;
+}
+.gcal-times {
+  display: flex; flex-direction: column;
+  padding-top: 20px;
+  border-right: 1px solid var(--line);
+}
+.gcal-times span {
+  flex: 1;
+  text-align: right;
+  padding-right: 12px;
+  font-size: 0.74rem;
+  color: var(--ink-3);
+  border-top: 1px solid transparent;
+}
+.gcal-day {
+  position: relative;
+  padding: 20px 18px;
+  background:
+    repeating-linear-gradient(180deg, transparent, transparent calc((100% - 0px) / 7 - 1px), #f3f4f6 calc((100% - 0px) / 7 - 1px), #f3f4f6 calc((100% - 0px) / 7));
+}
+.event {
+  position: absolute;
+  left: 18px; right: 18px;
+  background: linear-gradient(180deg, #c2dbff, #a4c4f9);
+  color: #1a3e7e;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  border-left: 3px solid #1a73e8;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.5s ease;
+}
+.event.in { opacity: 1; transform: translateY(0); }
+.event.new {
+  background: linear-gradient(180deg, #fff3cd, #ffe69c);
+  border-left-color: #b8860b;
+  color: #6e4a00;
+}
+.event.new::after {
+  content: ''; position: absolute; inset: -3px;
+  border: 2px solid rgba(184,134,11,0.5);
+  border-radius: 8px;
+  animation: pulse-new 1.4s ease-out infinite;
+}
+@keyframes pulse-new {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+.event-time { font-weight: 600; }
+.event-title { font-weight: 500; }
+.event-loc { opacity: 0.7; }
+
+.gcal-foot {
+  padding: 14px 24px;
+  border-top: 1px solid var(--line);
+  background: #f6f8fc;
+}
+.gcal-route {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px;
+  background: var(--green-soft);
+  color: #137333;
+  border-radius: 100px;
+  font-size: 0.8rem; font-weight: 500;
+  border: 1px solid rgba(52,168,83,0.3);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.gcal-route.in { opacity: 1; }
+
+/* ======= PHONE / SMS / REVIEW ======= */
+.phone-frame {
+  width: 390px;
+  height: 720px;
+  background: #111;
+  border-radius: 48px;
+  padding: 12px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+.phone-bezel {
+  position: absolute;
+  top: 22px; left: 50%;
+  transform: translateX(-50%);
+  width: 110px; height: 26px;
+  background: #050507;
+  border-radius: 100px;
+  z-index: 5;
+}
+.phone-display {
+  width: 100%; height: 100%;
+  background: #f3f3f7;
+  border-radius: 36px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.sms-display { background: #fff; }
+
+.ios-bar {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  padding: 50px 14px 14px;
+  border-bottom: 1px solid #e5e5ea;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+}
+.ios-back { color: var(--blue); font-size: 1.1rem; }
+.ios-contact { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ios-ava {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #4285f4; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+}
+.ios-name { font-size: 0.78rem; font-weight: 500; }
+
+.ios-thread {
+  flex: 1;
+  padding: 18px 14px;
+  display: flex; flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+.ios-bubble {
+  max-width: 78%;
+  padding: 9px 14px;
+  border-radius: 18px;
+  font-size: 0.94rem;
+  line-height: 1.35;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.4s cubic-bezier(.5,1.6,.4,1);
+}
+.ios-bubble.in { opacity: 1; transform: scale(1); }
+.ios-bubble.from-them {
+  align-self: flex-start;
+  background: #e9e9eb;
+  color: #000;
+  border-bottom-left-radius: 6px;
+}
+.ios-bubble.from-me {
+  align-self: flex-end;
+  background: #007aff;
+  color: #fff;
+  border-bottom-right-radius: 6px;
+  font-weight: 500;
+}
+.ios-bubble.tiny { font-size: 0.78rem; padding: 6px 12px; opacity: 0.8; }
+.ios-bubble strong { font-weight: 600; }
+.ios-meta {
+  align-self: center;
+  font-size: 0.7rem; color: #8e8e93;
+  margin: 6px 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.ios-meta.in { opacity: 1; }
+
+/* ======= REVIEW DISPLAY ======= */
+.review-display {
+  background: #fff;
+  padding: 38px 26px 26px;
+  overflow: hidden;
+}
+.review-mailtop {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.review-mailtop strong { display: block; font-weight: 600; font-size: 0.92rem; }
+.review-mailtop small { color: var(--ink-2); font-size: 0.78rem; }
+.review-display h3 {
+  font-family: var(--display); font-weight: 400;
+  font-size: 1.4rem; line-height: 1.25;
+  margin-bottom: 14px;
+}
+.review-body {
+  font-size: 0.92rem; color: var(--ink);
+  line-height: 1.55; margin-bottom: 18px;
+}
+.review-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  font-size: 0.86rem; font-weight: 500;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+.review-btn i { color: var(--blue); }
+
+.review-result {
+  margin-top: 14px;
+  padding: 20px 18px;
+  background: linear-gradient(180deg, #fff8e1, #fff);
+  border: 1px solid #ffe082;
+  border-radius: 12px;
+  opacity: 0; transform: translateY(8px);
+  transition: all 0.5s ease;
+}
+.review-result.in { opacity: 1; transform: translateY(0); }
+.review-stars {
+  display: flex; gap: 6px;
+  color: #d0d0d0; font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+.review-stars i.lit {
+  color: #f4b400;
+  text-shadow: 0 0 12px rgba(244, 180, 0, 0.4);
+  transform: scale(1.08);
+  transition: transform 0.25s, color 0.25s;
+}
+.review-quote {
+  font-size: 0.9rem; line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.review-result small { color: var(--ink-2); font-size: 0.74rem; }
+
+/* ======= DASHBOARD ======= */
+.dash {
+  width: 1080px;
+  height: 600px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 44px;
+  display: flex; flex-direction: column;
+}
+.dash-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 22px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+}
+.dash-head strong {
+  font-family: var(--display); font-weight: 400;
+  font-size: 1.5rem;
+}
+.dash-period {
+  padding: 5px 14px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500;
+}
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+.kpi {
+  padding: 28px 24px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex; flex-direction: column;
+  gap: 6px;
+  transition: all 0.5s;
+  opacity: 0; transform: translateY(8px);
+}
+.kpi.in { opacity: 1; transform: translateY(0); }
+.kpi-val {
+  font-family: var(--display); font-weight: 300;
+  font-size: 2.8rem; color: var(--blue);
+  line-height: 1;
+}
+.kpi-lbl {
+  font-size: 0.86rem; font-weight: 600;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.kpi-foot {
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  margin-top: auto;
+  padding-top: 14px;
+}
+.kpi-foot i { color: var(--green); margin-right: 4px; }

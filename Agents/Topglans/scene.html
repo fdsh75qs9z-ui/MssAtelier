@@ -3,303 +3,220 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Topglans · scene</title>
+<title>Topglans · agent walkthrough</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<link rel="stylesheet" href="style.css" />
-<style>
-  body { background: #0a0a0c; min-height: 100vh; overflow: hidden; }
-  .stage {
-    width: 100vw; height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .stage::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(800px circle at 30% 25%, rgba(201,168,106,0.14), transparent 60%),
-      radial-gradient(800px circle at 75% 75%, rgba(109,180,212,0.10), transparent 60%);
-    z-index: 0;
-  }
-  .scene {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.6s;
-    z-index: 1;
-  }
-  .scene.active { opacity: 1; }
-
-  .scene-title {
-    position: absolute; top: 60px; left: 60px;
-    z-index: 5;
-  }
-  .scene-title .eyebrow {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 14px;
-  }
-  .scene-title .eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-  .scene-title h1 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    line-height: 1.05; letter-spacing: -0.02em;
-    max-width: 16ch;
-  }
-  .scene-title h1 em { font-style: italic; color: var(--gold); }
-  .scene-clock {
-    position: absolute; top: 60px; right: 60px;
-    font-family: var(--display); font-size: 1.4rem;
-    color: var(--gold); letter-spacing: 0.05em;
-  }
-  .scene-clock .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); margin-right: 10px; animation: pulse 1.5s infinite; vertical-align: middle; }
-
-  .scene-counter {
-    position: absolute; bottom: 60px; left: 60px;
-    font-family: var(--display); color: var(--ink-mute);
-    font-size: 1.1rem;
-  }
-  .scene-counter strong { color: var(--gold); }
-
-  .scene-brand {
-    position: absolute; bottom: 60px; right: 60px;
-    display: flex; align-items: baseline; gap: 10px;
-    font-family: var(--display);
-  }
-  .scene-brand .mark { font-size: 1.4rem; color: var(--ink); }
-  .scene-brand .sub { font-size: 1rem; font-style: italic; color: var(--gold); }
-
-  /* SCENE 1: Klokken er sent — chat captures lead */
-  .scene-chat {
-    display: flex; gap: 60px; align-items: center; justify-content: center;
-    padding-top: 60px;
-  }
-
-  /* SCENE 2: Mail goes out */
-  .mail-stage {
-    width: 580px; padding: 30px;
-    background: rgba(23,23,27,0.5);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    backdrop-filter: blur(8px);
-    transform: scale(0.92);
-  }
-
-  /* SCENE 3: Calendar updates */
-  .cal-stage {
-    width: 540px; padding: 30px;
-    background: rgba(23,23,27,0.5);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-  }
-
-  /* SCENE 4: SMS reactivation */
-  .sms-stage {
-    width: 520px; padding: 30px;
-    background: rgba(23,23,27,0.5);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-  }
-
-  /* SCENE 5: Impact numbers */
-  .impact-stage {
-    text-align: center;
-  }
-  .impact-row {
-    display: flex; gap: 80px; justify-content: center;
-    margin-top: 40px;
-  }
-  .impact-num {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(4rem, 9vw, 7rem); line-height: 1;
-    color: var(--gold);
-    display: block;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all .8s cubic-bezier(.2,.8,.2,1);
-  }
-  .impact-num.in { opacity: 1; transform: translateY(0); }
-  .impact-lbl {
-    margin-top: 14px;
-    font-size: 0.8rem; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--ink-dim);
-  }
-
-  /* Phone for scene 1 */
-  .scene-phone {
-    width: 360px; transform: scale(1);
-  }
-  .scene-phone .phone-screen { height: 600px; }
-
-  /* Notification overlay */
-  .notif {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    width: 380px;
-    padding: 18px 22px;
-    background: linear-gradient(160deg, rgba(201, 168, 106, 0.18), rgba(23, 23, 27, 0.85));
-    border: 1px solid rgba(201, 168, 106, 0.4);
-    border-radius: 16px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8), 0 0 60px rgba(201, 168, 106, 0.2);
-    opacity: 0; transition: all 0.6s cubic-bezier(.2,.8,.2,1);
-    z-index: 10;
-  }
-  .notif.in { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  .notif header {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 8px;
-    font-size: 0.74rem; color: var(--gold);
-    letter-spacing: 0.16em; text-transform: uppercase;
-  }
-  .notif header .dot {
-    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
-    box-shadow: 0 0 10px var(--gold);
-  }
-  .notif h3 {
-    font-family: var(--display); font-weight: 400;
-    font-size: 1.15rem; margin-bottom: 6px;
-  }
-  .notif p {
-    font-size: 0.86rem; color: var(--ink-dim);
-    line-height: 1.5;
-  }
-
-  /* Helpers */
-  .fade-in { opacity: 0; transform: translateY(12px); transition: all .6s cubic-bezier(.2,.8,.2,1); }
-  .fade-in.in { opacity: 1; transform: translateY(0); }
-  .pop-in { opacity: 0; transform: scale(0.85); transition: all .5s cubic-bezier(.5,1.6,.4,1); }
-  .pop-in.in { opacity: 1; transform: scale(1); }
-  .ring-pulse::after {
-    content: ''; position: absolute; inset: -8px;
-    border-radius: inherit; border: 2px solid var(--gold);
-    opacity: 0; animation: ring 1.4s ease-out;
-  }
-  @keyframes ring {
-    0% { opacity: 0.8; transform: scale(0.85); }
-    100% { opacity: 0; transform: scale(1.2); }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=Manrope:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="scene.css" />
 </head>
 <body>
 
-<div class="ambient"></div>
-<div class="noise"></div>
-
 <div class="stage" id="stage">
-  <div class="scene-clock"><span class="dot"></span><span id="clock">21:47</span></div>
-  <div class="scene-brand"><span class="mark">MSS</span><span class="sub">Atelier</span></div>
-  <div class="scene-counter">Scene <strong id="counter">01</strong> / 05</div>
 
-  <!-- SCENE 1: Chat capture -->
-  <section class="scene" id="scene-1">
-    <div class="scene-title">
-      <span class="eyebrow">Sent torsdag aften · Anders sover</span>
-      <h1>Kunden henvender sig — <em>agenten tager hjem.</em></h1>
+  <!-- Chrome / chyron -->
+  <div class="chyron">
+    <div class="chyron-left">
+      <span class="chyron-label" id="chyron-label">INDBAKKE</span>
+      <span class="chyron-sub" id="chyron-sub">Mail-agenten</span>
     </div>
-    <div class="scene-chat">
-      <div class="phone scene-phone">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="chat-header">
-            <div class="chat-avatar">
-              <span class="avatar-glyph">T</span>
-              <span class="avatar-status"></span>
-            </div>
-            <div class="chat-meta">
-              <strong>Topglans Vinduespolering</strong>
-              <span>Online · svarer typisk straks</span>
+    <div class="chyron-right">
+      <span class="chyron-brand">Topglans · MSS Atelier</span>
+    </div>
+  </div>
+
+  <!-- ============ CH 1: INBOX TRIAGE (Gmail-style) ============ -->
+  <section class="chapter" id="ch-inbox">
+    <div class="app gmail">
+      <aside class="gmail-side">
+        <button class="gmail-compose"><i class="fa-solid fa-pen"></i> Skriv</button>
+        <ul>
+          <li class="active"><i class="fa-solid fa-inbox"></i> Indbakke <span class="badge" id="inbox-count">0</span></li>
+          <li><i class="fa-regular fa-star"></i> Stjernemarkeret</li>
+          <li><i class="fa-regular fa-paper-plane"></i> Sendt</li>
+          <li><i class="fa-regular fa-file"></i> Udkast</li>
+        </ul>
+        <div class="gmail-labels">
+          <span class="lbl-h">Etiketter (AI)</span>
+          <div><span class="lbl-dot green"></span>Nyt lead</div>
+          <div><span class="lbl-dot blue"></span>Booking</div>
+          <div><span class="lbl-dot orange"></span>Spørgsmål</div>
+          <div><span class="lbl-dot red"></span>Hastesag</div>
+          <div><span class="lbl-dot gray"></span>Faktura</div>
+        </div>
+      </aside>
+      <main class="gmail-list" id="gmail-list">
+        <header class="gmail-head">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Søg i mails" disabled value="" />
+          <div class="gmail-user">A</div>
+        </header>
+        <ul class="gmail-rows" id="gmail-rows"></ul>
+      </main>
+    </div>
+  </section>
+
+  <!-- ============ CH 2: EMAIL OPENED + AI DRAFT ============ -->
+  <section class="chapter" id="ch-mail">
+    <div class="app gmail">
+      <aside class="gmail-side">
+        <button class="gmail-compose"><i class="fa-solid fa-pen"></i> Skriv</button>
+        <ul>
+          <li class="active"><i class="fa-solid fa-inbox"></i> Indbakke</li>
+          <li><i class="fa-regular fa-star"></i> Stjernemarkeret</li>
+          <li><i class="fa-regular fa-paper-plane"></i> Sendt</li>
+          <li><i class="fa-regular fa-file"></i> Udkast</li>
+        </ul>
+      </aside>
+      <main class="gmail-reader">
+        <header class="gmail-bar">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span class="dot-sep"></span>
+          <i class="fa-solid fa-box-archive"></i>
+          <i class="fa-solid fa-trash-can"></i>
+          <i class="fa-solid fa-envelope-open"></i>
+          <span class="gmail-pill green"><span class="lbl-dot green"></span>Nyt lead</span>
+        </header>
+        <article class="gmail-msg" id="mail-incoming">
+          <h2>Tilbud på vinduespudsning — privatbolig</h2>
+          <div class="gmail-from">
+            <div class="avatar avatar-m">M</div>
+            <div>
+              <strong>Maria Holm</strong> <span class="from-addr">&lt;maria.holm@gmail.com&gt;</span><br/>
+              <small>til mig · i dag kl. 21:43</small>
             </div>
           </div>
-          <div class="chat-body" id="s1-body"></div>
+          <div class="gmail-body" id="mail-incoming-body"></div>
+        </article>
+
+        <article class="gmail-draft" id="mail-draft">
+          <div class="draft-head">
+            <span class="draft-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI-udkast · klar til at sende</span>
+            <span class="draft-time">Genereret på 0,8 sek.</span>
+          </div>
+          <div class="gmail-body" id="mail-draft-body"></div>
+          <div class="draft-actions">
+            <button class="btn-send"><i class="fa-solid fa-paper-plane"></i> Send</button>
+            <button class="btn-edit">Rediger</button>
+            <span class="draft-note">Eller lad agenten sende automatisk for godkendte mønstre</span>
+          </div>
+        </article>
+      </main>
+    </div>
+  </section>
+
+  <!-- ============ CH 3: CALENDAR — automatic booking ============ -->
+  <section class="chapter" id="ch-calendar">
+    <div class="app gcal">
+      <header class="gcal-head">
+        <span class="gcal-title">Maj 2026</span>
+        <span class="gcal-pill">Uge 21 · torsdag 21</span>
+        <span class="gcal-user">A</span>
+      </header>
+      <div class="gcal-grid">
+        <div class="gcal-times">
+          <span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+        </div>
+        <div class="gcal-day" id="gcal-day"></div>
+      </div>
+      <footer class="gcal-foot">
+        <span class="gcal-route"><i class="fa-solid fa-route"></i> Rute optimeret · 31 km i alt · 0 km ekstra for nyt lead</span>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ============ CH 4: SMS reactivation (iPhone style) ============ -->
+  <section class="chapter" id="ch-sms">
+    <div class="phone-frame">
+      <div class="phone-bezel"></div>
+      <div class="phone-display sms-display">
+        <header class="ios-bar">
+          <div>
+            <div class="ios-back"><i class="fa-solid fa-chevron-left"></i></div>
+          </div>
+          <div class="ios-contact">
+            <div class="ios-ava">T</div>
+            <div class="ios-name">Topglans</div>
+          </div>
+          <div></div>
+        </header>
+        <div class="ios-thread" id="sms-thread"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CH 5: review collection ============ -->
+  <section class="chapter" id="ch-review">
+    <div class="phone-frame">
+      <div class="phone-bezel"></div>
+      <div class="phone-display review-display" id="review-display">
+        <div class="review-mailtop">
+          <div class="avatar avatar-t">T</div>
+          <div>
+            <strong>Topglans Vinduespolering</strong>
+            <small>til mig · i går</small>
+          </div>
+        </div>
+        <h3>Hej Maria — havde du tid til at give os et hjerte? ★</h3>
+        <p class="review-body">
+          Tak fordi du valgte os i går. Det betyder rigtig meget for en lille forretning, hvis du har 30 sek. til at lade andre vide, at det gik godt.
+        </p>
+        <a class="review-btn"><i class="fa-brands fa-google"></i> Skriv en Google-anmeldelse</a>
+        <div class="review-result" id="review-result">
+          <div class="review-stars" id="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-quote" id="review-quote">"Hurtig, grundig og venlig — vores vinduer har aldrig været så rene. Anbefales!"</p>
+          <small id="review-meta">Maria H. · for 4 minutter siden · 5 ud af 5</small>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SCENE 2: Mail goes out -->
-  <section class="scene" id="scene-2">
-    <div class="scene-title">
-      <span class="eyebrow">2 sekunder senere</span>
-      <h1>Mail-agenten <em>klassificerer</em> og svarer.</h1>
-    </div>
-    <div class="mail-stage">
-      <div class="mock-mail">
-        <div class="mock-mail-row from"><strong>Til: Maria K.</strong><span>maria@email.dk</span></div>
-        <div class="mock-mail-subj">Bekræftelse — Topglans Vinduespolering</div>
-        <div class="mock-mail-tags" id="s2-tags"></div>
-        <div class="mock-mail-body" id="s2-body"></div>
-        <div class="mock-mail-foot">
-          <span class="badge"><i class="fa-solid fa-paper-plane"></i> Sendt automatisk · 21:47</span>
-        </div>
+  <!-- ============ CH 6: dashboard / impact ============ -->
+  <section class="chapter" id="ch-dash">
+    <div class="dash">
+      <header class="dash-head">
+        <strong>Topglans · AI-agent</strong>
+        <span class="dash-period">Sidste 30 dage</span>
+      </header>
+      <div class="dash-grid">
+        <article class="kpi" data-target="84" data-suffix=" leads">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Henvendelser fanget</span>
+          <span class="kpi-foot"><i class="fa-solid fa-arrow-up"></i> heraf 23 efter kl. 17</span>
+        </article>
+        <article class="kpi" data-target="62" data-suffix=" bookninger">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Direkte bookninger</span>
+          <span class="kpi-foot">Konvertering 74%</span>
+        </article>
+        <article class="kpi" data-target="7,5" data-suffix=" t/uge" data-dec="1">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Admin-tid sparet</span>
+          <span class="kpi-foot">Mails + opfølgning</span>
+        </article>
+        <article class="kpi" data-target="47" data-suffix=" automatisk">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Genbookede kunder</span>
+          <span class="kpi-foot">Uden ét manuelt opkald</span>
+        </article>
+        <article class="kpi" data-target="38" data-suffix=" stjerner">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Nye anmeldelser</span>
+          <span class="kpi-foot">Gennemsnit: 4,9 ★</span>
+        </article>
+        <article class="kpi" data-target="0" data-suffix=" mistede">
+          <span class="kpi-val">0</span>
+          <span class="kpi-lbl">Tabte leads efter lukketid</span>
+          <span class="kpi-foot">Svartid: under 1 min.</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- SCENE 3: Calendar -->
-  <section class="scene" id="scene-3">
-    <div class="scene-title">
-      <span class="eyebrow">5 sekunder senere</span>
-      <h1>Kalenderen <em>finder pladsen</em> — uden dobbeltbooking.</h1>
-    </div>
-    <div class="cal-stage">
-      <div class="mock-calendar">
-        <div class="cal-day" id="s3-day">
-          <span class="cal-date">TORSDAG · 21/5</span>
-        </div>
-        <div class="mock-route fade-in" id="s3-route">
-          <span><i class="fa-solid fa-route"></i> Rute optimeret · +0 km ekstra kørsel</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCENE 4: Reactivation SMS -->
-  <section class="scene" id="scene-4">
-    <div class="scene-title">
-      <span class="eyebrow">8 uger senere · helt af sig selv</span>
-      <h1>Eksisterende kunder kommer <em>tilbage.</em></h1>
-    </div>
-    <div class="sms-stage">
-      <div class="mock-sms" id="s4-sms"></div>
-      <div class="mini-stat fade-in" id="s4-stat">47 automatiske genbookinger sidste måned · 0 manuelle SMS'er fra Anders</div>
-    </div>
-  </section>
-
-  <!-- SCENE 5: Impact -->
-  <section class="scene" id="scene-5">
-    <div class="scene-title">
-      <span class="eyebrow">Topglans · efter 90 dage</span>
-      <h1>Hvad agenten <em>leverer.</em></h1>
-    </div>
-    <div class="impact-stage">
-      <div class="impact-row">
-        <div>
-          <span class="impact-num" data-target="+7,5 t">+0 t</span>
-          <span class="impact-lbl">Sparet pr. uge</span>
-        </div>
-        <div>
-          <span class="impact-num" data-target="+23 %">+0 %</span>
-          <span class="impact-lbl">Flere bookede leads</span>
-        </div>
-        <div>
-          <span class="impact-num" data-target="4,9 ★">0,0 ★</span>
-          <span class="impact-lbl">Gennemsnitlig rating</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Floating notification -->
-  <div class="notif" id="notif">
-    <header><span class="dot"></span>Nyt lead modtaget</header>
-    <h3>Maria K. · 8000 Aarhus C</h3>
-    <p>Booket torsdag 21/5 kl. 10:00 · 860 kr. pr. besøg · hver 8. uge</p>
-  </div>
 </div>
 
+<script src="fa-icons.js"></script>
 <script src="scene.js"></script>
 </body>
 </html>

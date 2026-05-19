@@ -10,13 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<div class="ambient"></div>
-<div class="noise"></div>
 
 <nav class="nav" id="nav">
   <a href="../../" class="nav-logo">
@@ -44,28 +40,62 @@
       <em>fri.</em>
     </h1>
     <p class="hero-subtitle">
-      Topglans får 230 faste kunder på 2½ måned. Det næste flaskehals er ikke at finde kunder — det er at håndtere alle dem, der allerede henvender sig. Her er hvad en AI-agent fra MSS Atelier kan gøre for jer, demonstreret med jeres eget brand og workflow.
+      Topglans får 230 faste kunder på 2½ måned. Næste flaskehals er ikke at finde kunder — det er at håndtere alle dem, der allerede henvender sig. Her er hvad en AI-agent fra MSS Atelier kan gøre for jer, vist med jeres eget brand og workflow.
     </p>
     <div class="hero-actions">
-      <a href="#chat" class="btn-primary">Prøv chat-agenten <i class="fa-solid fa-arrow-right"></i></a>
-      <a href="#flow" class="btn-secondary">Se bagved kulisserne</a>
+      <a href="#video-overblik" class="btn-primary">Se agenten i en video <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#chat" class="btn-secondary">Prøv chat-agenten</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><span class="stat-num">24/7</span><span class="stat-lbl">Tilgængelig</span></div>
-      <div class="stat"><span class="stat-num">< 1 min</span><span class="stat-lbl">Svartid</span></div>
+      <div class="stat"><span class="stat-num">&lt; 1 min</span><span class="stat-lbl">Svartid</span></div>
       <div class="stat"><span class="stat-num">~8 t/uge</span><span class="stat-lbl">Sparet admin</span></div>
     </div>
   </div>
 </section>
 
-<!-- LIVE CHATBOT -->
+<!-- VIDEO: AGENT OVERBLIK (Video 02) -->
+<section id="video-overblik" class="video-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Walkthrough · 1 minut 40</span>
+      <h2 class="section-title">Hvad agenten gør i <em>hverdagen.</em></h2>
+      <p class="section-sub">
+        En komplet gennemgang af agentens arbejde — fra indbakken om aftenen til Google-anmeldelsen næste dag. Klippene er optaget direkte på prototypen og bruger Topglans' navne, områder og scenarier.
+      </p>
+    </div>
+
+    <div class="video-aside">
+      <div class="video-frame">
+        <video controls preload="metadata" playsinline poster="videos/poster-02.jpg">
+          <source src="videos/02-agent-overblik.mp4" type="video/mp4" />
+          Din browser kan ikke afspille videoer.
+        </video>
+      </div>
+      <div class="video-aside-meta">
+        <h3>Seks små <em>medarbejdere</em><br/>i én agent.</h3>
+        <p>Hver scene viser en konkret automatisering. Tryk play og lad den køre — videoen er pacet, så du selv kan tale henover på mødet.</p>
+        <ul class="video-chapters">
+          <li><span class="chap-time">00:00</span><div class="chap-text"><strong>Indbakken</strong><span>Mail-agenten klassificerer leads, klager og fakturaer automatisk.</span></div></li>
+          <li><span class="chap-time">00:18</span><div class="chap-text"><strong>Smart svar</strong><span>AI-udkast med pris, tid og rute — klar til ét klik.</span></div></li>
+          <li><span class="chap-time">00:36</span><div class="chap-text"><strong>Kalenderen</strong><span>Booking-agenten lægger tiden ind uden dobbelt-booking.</span></div></li>
+          <li><span class="chap-time">00:50</span><div class="chap-text"><strong>SMS-fastholdelse</strong><span>Eksisterende kunder bookes automatisk efter 8 uger.</span></div></li>
+          <li><span class="chap-time">01:07</span><div class="chap-text"><strong>Anmeldelser</strong><span>5-stjernet review samles ind 24 timer efter besøget.</span></div></li>
+          <li><span class="chap-time">01:21</span><div class="chap-text"><strong>Overblik</strong><span>Hvad agenten leverer på 30 dage — i tal.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE CHAT -->
 <section id="chat" class="chat-section">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Modul 01 · Start-pakken</span>
+      <span class="section-label">Prøv den selv · Start-pakken</span>
       <h2 class="section-title">Lead-agenten — <em>fanger kunden</em> mens andre sover.</h2>
       <p class="section-sub">
-        Skriv som var du en kunde der skrev til Topglans på hjemmesiden eller Facebook. Agenten kvalificerer, giver et estimat, foreslår tid — og sender et færdigt lead i Anders' indbakke.
+        Skriv som var du en kunde, der skrev til Topglans på hjemmesiden eller Facebook. Agenten kvalificerer, giver et estimat, foreslår tid — og sender et færdigt lead i Anders' indbakke. Til højre ser du, hvad agenten samler op undervejs.
       </p>
     </div>
 
@@ -108,88 +138,26 @@
   </div>
 </section>
 
-<!-- BAG KULISSERNE -->
-<section id="flow" class="flow-section">
+<!-- VIDEO: LEAD-AGENTEN LIVE (Video 01) -->
+<section class="video-section">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Modul 02 · Vækst-pakken</span>
-      <h2 class="section-title">Hvad der sker <em>i sekundet</em> et lead er fanget.</h2>
+      <span class="section-label">Optagelse · 36 sekunder</span>
+      <h2 class="section-title">Den samme samtale — <em>som video.</em></h2>
       <p class="section-sub">
-        Når kunden er kvalificeret i chatten, går resten af agentens hjerne i gang — uden et eneste klik fra Anders. Det er her tiden virkelig spares.
+        Hvis du foretrækker bare at se det køre uden at skrive selv: her er en optaget gennemgang af lead-agenten, hvor en kunde booker tid fra start til slut.
       </p>
     </div>
-
-    <div class="flow-grid">
-      <article class="flow-card" data-step="01">
-        <header><i class="fa-solid fa-envelope-open-text"></i><span>00:02</span></header>
-        <h3>Mail-agenten klassificerer og svarer</h3>
-        <div class="mock-mail">
-          <div class="mock-mail-row from"><strong>Maria K.</strong><span>maria@email.dk</span></div>
-          <div class="mock-mail-subj">Tilbud på vinduespudsning — 8000 Aarhus C</div>
-          <div class="mock-mail-tags">
-            <span class="tag green">Nyt lead</span>
-            <span class="tag blue">Hus · 18 vinduer</span>
-            <span class="tag gold">Fast aftale · hver 8. uge</span>
-          </div>
-          <div class="mock-mail-body">
-            <p>Hej Maria,</p>
-            <p>Tak for din henvendelse. Baseret på dine oplysninger lyder vores tilbud på <strong>895 kr.</strong> pr. besøg ved fast aftale hver 8. uge — første besøg <strong>torsdag d. 21. maj kl. 10:00</strong>.</p>
-            <p>Bekræft ved at svare på denne mail, så er du i kalenderen.</p>
-            <p>Anders · Topglans</p>
-          </div>
-          <div class="mock-mail-foot">
-            <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Udkast fra AI · 1-klik godkend</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="flow-card" data-step="02">
-        <header><i class="fa-solid fa-calendar-check"></i><span>00:05</span></header>
-        <h3>Kalender-agenten booker — uden dobbelte tider</h3>
-        <div class="mock-calendar">
-          <div class="cal-day">
-            <span class="cal-date">TORS · 21/5</span>
-            <div class="cal-slot busy"><span>08:30</span><em>Familien Holm · Risskov</em></div>
-            <div class="cal-slot new"><span>10:00</span><em>Maria K. · 8000 Aarhus C <i class="fa-solid fa-bolt"></i></em></div>
-            <div class="cal-slot busy"><span>11:30</span><em>Café Mocca · Centrum</em></div>
-            <div class="cal-slot busy"><span>13:00</span><em>Søren P. · Højbjerg</em></div>
-          </div>
-          <div class="mock-route">
-            <span><i class="fa-solid fa-route"></i> Rute optimeret · +0 km ekstra</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="flow-card" data-step="03">
-        <header><i class="fa-solid fa-comment-sms"></i><span>+8 uger</span></header>
-        <h3>Opfølgnings-agenten henter kunden tilbage</h3>
-        <div class="mock-sms">
-          <div class="sms-bubble out">
-            Hej Maria 👋 Vi var hos jer for 8 uger siden — vinduerne trænger nok igen. Næste ledige tur i Aarhus C er <strong>tirsdag 14. juli kl. 09:00</strong>. Svar <strong>JA</strong> for at booke. /Topglans
-          </div>
-          <div class="sms-bubble in">JA</div>
-          <div class="sms-bubble out small"><i class="fa-solid fa-check-double"></i> Booket. Kalender opdateret. Bekræftelse på vej.</div>
-        </div>
-        <div class="mini-stat">47 automatiske genbookinger sidste måned · 0 manuelle SMS'er</div>
-      </article>
-
-      <article class="flow-card" data-step="04">
-        <header><i class="fa-solid fa-star"></i><span>+24 t efter besøg</span></header>
-        <h3>Anmeldelses-agenten samler stjernerne ind</h3>
-        <div class="mock-review">
-          <p class="review-prompt">"Hej Maria, tak fordi I valgte Topglans. Vil du give os 30 sekunder og en anmeldelse på Google?"</p>
-          <a class="review-cta">Skriv anmeldelse <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <div class="stars-row">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            <span>4,9 · 142 anmeldelser</span>
-          </div>
-        </div>
-      </article>
+    <div class="video-frame" style="max-width: 980px; margin: 0 auto;">
+      <video controls preload="metadata" playsinline poster="videos/poster-01.jpg">
+        <source src="videos/01-lead-agent-live.mp4" type="video/mp4" />
+        Din browser kan ikke afspille videoer.
+      </video>
     </div>
   </div>
 </section>
 
-<!-- VÆRDI / ROI -->
+<!-- ROI -->
 <section class="roi-section">
   <div class="container">
     <div class="section-head center">
@@ -210,8 +178,8 @@
       </div>
       <div class="roi-card">
         <span class="roi-num">+ 4,9 ★</span>
-        <span class="roi-lbl">Google-rating på autopilot</span>
-        <p>Automatisk venlig forespørgsel 24 t efter besøget — dobler antal anmeldelser.</p>
+        <span class="roi-lbl">Rating på autopilot</span>
+        <p>Automatisk venlig forespørgsel 24 t. efter besøg — dobler antal anmeldelser.</p>
       </div>
       <div class="roi-card">
         <span class="roi-num">0 kr.</span>
@@ -239,11 +207,11 @@
           <p>Lead-chatbot + automatisk opfølgning og anmeldelser.</p>
         </header>
         <ul class="pack-features">
-          <li><i class="fa-solid fa-check"></i>Lead-agent på hjemmeside, Facebook og Instagram DM</li>
-          <li><i class="fa-solid fa-check"></i>Automatisk kvalificering og prisestimat</li>
-          <li><i class="fa-solid fa-check"></i>SMS-opfølgning til eksisterende kunder</li>
-          <li><i class="fa-solid fa-check"></i>Google-anmeldelses-prompt efter hvert besøg</li>
-          <li><i class="fa-solid fa-check"></i>Daglig rapport på mail</li>
+          <li><i class="fa-solid fa-circle-check"></i>Lead-agent på hjemmeside, Facebook og Instagram DM</li>
+          <li><i class="fa-solid fa-circle-check"></i>Automatisk kvalificering og prisestimat</li>
+          <li><i class="fa-solid fa-circle-check"></i>SMS-opfølgning til eksisterende kunder</li>
+          <li><i class="fa-solid fa-circle-check"></i>Google-anmeldelses-prompt efter hvert besøg</li>
+          <li><i class="fa-solid fa-circle-check"></i>Daglig rapport på mail</li>
         </ul>
         <footer>
           <div class="price"><span class="amount">12.500 kr.</span><span class="period">opstart</span></div>
@@ -259,11 +227,11 @@
           <p>Alt fra Start + intelligent mail- og kalender-agent.</p>
         </header>
         <ul class="pack-features">
-          <li><i class="fa-solid fa-check"></i>Alt fra Start-pakken</li>
-          <li><i class="fa-solid fa-check"></i>Mail-agent: klassificerer, svarer eller udkaster</li>
-          <li><i class="fa-solid fa-check"></i>Google Calendar-integration, ingen dobbeltbooking</li>
-          <li><i class="fa-solid fa-check"></i>Rute-bevidst tidsforslag (sparer kørsel)</li>
-          <li><i class="fa-solid fa-check"></i>CRM-eksport: hver lead samlet ét sted</li>
+          <li><i class="fa-solid fa-circle-check"></i>Alt fra Start-pakken</li>
+          <li><i class="fa-solid fa-circle-check"></i>Mail-agent: klassificerer, svarer eller udkaster</li>
+          <li><i class="fa-solid fa-circle-check"></i>Google Calendar-integration, ingen dobbeltbooking</li>
+          <li><i class="fa-solid fa-circle-check"></i>Rute-bevidst tidsforslag (sparer kørsel)</li>
+          <li><i class="fa-solid fa-circle-check"></i>CRM-eksport: hver lead samlet ét sted</li>
         </ul>
         <footer>
           <div class="price"><span class="amount">22.500 kr.</span><span class="period">opstart</span></div>
@@ -314,6 +282,7 @@
   </div>
 </footer>
 
+<script src="fa-icons.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
