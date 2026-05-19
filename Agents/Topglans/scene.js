@@ -130,7 +130,7 @@
   const DRAFT_BODY = [
     'Hej Maria,',
     'Tak for jeres henvendelse — og en stor tak til Hanne for omtalen 🙂',
-    'Baseret på et toetagers hus med 18 vinduer kommer vores tilbud på <strong>860 kr. pr. besøg</strong> ved fast aftale hver 8. uge. Første ledige tid hos jer er <strong>torsdag d. 21. maj kl. 10:00</strong>, og den passer fint ind i vores rute i Aarhus C.',
+    'Baseret på et toetagers hus med 18 vinduer kan vi tilbyde fast vinduespudsning hver 8. uge. Første ledige tid hos jer er <strong>torsdag d. 21. maj kl. 10:00</strong>, og den passer fint ind i vores rute i Aarhus C.',
     'Bekræft ved at svare på denne mail, så er I i kalenderen og modtager en SMS-påmindelse aftenen før.',
     'De bedste hilsner,\nAnders · Topglans Vinduespolering',
   ];
