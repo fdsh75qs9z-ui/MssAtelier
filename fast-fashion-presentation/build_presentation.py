@@ -416,12 +416,15 @@ def add_pentagram_slide(prs, data):
         tf = node.text_frame
         tf.word_wrap = True
         tf.vertical_anchor = MSO_ANCHOR.MIDDLE
-        p = tf.paragraphs[0]
-        p.alignment = PP_ALIGN.CENTER
-        p.line_spacing = 0.95
-        r1 = p.add_run(); r1.text = en + "\n"
+        p1 = tf.paragraphs[0]
+        p1.alignment = PP_ALIGN.CENTER
+        p1.line_spacing = 0.95
+        r1 = p1.add_run(); r1.text = en
         r1.font.name = BODY; r1.font.size = Pt(15); r1.font.bold = True; r1.font.color.rgb = WHITE
-        r2 = p.add_run(); r2.text = da
+        p2 = tf.add_paragraph()
+        p2.alignment = PP_ALIGN.CENTER
+        p2.line_spacing = 0.95
+        r2 = p2.add_run(); r2.text = da
         r2.font.name = BODY; r2.font.size = Pt(11); r2.font.italic = True; r2.font.color.rgb = NODE_SUB
 
     slide.notes_slide.notes_text_frame.text = data.get("notes", "")
