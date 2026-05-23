@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Live demo: AI shop-assistent til onewrld — bygget af MSS Atelier." />
+<meta name="robots" content="noindex,nofollow" />
+<title>AI shop-assistent demo — onewrld × MSS Atelier</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="../" class="nav-logo">
+    <span class="nav-logo-mark">MSS</span>
+    <span class="nav-logo-sub">Atelier</span>
+  </a>
+  <div class="nav-meta">
+    <span class="nav-pill"><span class="dot"></span>Live demo</span>
+    <span class="nav-client">onewrld</span>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      <span class="hero-eyebrow-text">Forberedt til onewrld · Hamza</span>
+    </div>
+    <h1 class="hero-title">
+      En sælger i<br/>
+      webshoppen<br/>
+      der aldrig <em>logger af.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Hvert drop sender en bølge af DM'er og mails: <strong>"har I den i medium?"</strong>, "hvornår kommer den tilbage?", "hvor er min pakke?". Mange spørger kl. 23 — og kurven bliver tom, hvis ingen svarer. Her er hvad en AI shop-assistent fra MSS Atelier kan gøre for onewrld, vist med jeres eget brand og styles.
+    </p>
+    <div class="hero-actions">
+      <a href="#chat" class="btn-primary">Prøv shop-assistenten <i class="fa-arrow-right"></i></a>
+      <a href="#roi" class="btn-secondary">Se hvad det giver</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">24/7</span><span class="stat-lbl">Svarer på DM &amp; chat</span></div>
+      <div class="stat"><span class="stat-num">&lt; 1 min</span><span class="stat-lbl">Svartid</span></div>
+      <div class="stat"><span class="stat-num">31 %</span><span class="stat-lbl">Færre tabte kurve</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE CHAT -->
+<section id="chat" class="chat-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Prøv den selv · Shop-assistenten</span>
+      <h2 class="section-title">Den hjælper kunden i mål — <em>mens du sover.</em></h2>
+      <p class="section-sub">
+        Skriv som var du en kunde på onewrld.com eller i en Instagram-DM. Assistenten finder den rigtige style, gætter størrelsen, svarer på fragt og retur — og samler en færdig kurv. Til højre ser du, hvad agenten opfanger undervejs, og hvor tæt kunden er på at trykke "køb".
+      </p>
+    </div>
+
+    <div class="demo-stage">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <span class="avatar-glyph">ow</span>
+              <span class="avatar-status"></span>
+            </div>
+            <div class="chat-meta">
+              <strong>onewrld</strong>
+              <span>Online · svarer typisk straks</span>
+            </div>
+            <button class="chat-reset" id="chat-reset" title="Start forfra" aria-label="Start forfra"><i class="fa-rotate-right"></i></button>
+          </div>
+          <div class="chat-body" id="chat-body" role="log" aria-live="polite"></div>
+          <div class="chat-suggestions" id="chat-suggestions"></div>
+          <form class="chat-input-row" id="chat-form" autocomplete="off">
+            <input type="text" id="chat-input" placeholder="Skriv en besked..." aria-label="Besked til onewrld" />
+            <button type="submit" aria-label="Send"><i class="fa-arrow-up"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <aside class="ticker" aria-label="Live-data fra agenten">
+        <header><span class="dot"></span>Hvad agenten ved lige nu</header>
+        <ul id="ticker-list">
+          <li class="empty">Endnu intet — start samtalen til venstre.</li>
+        </ul>
+        <footer id="ticker-foot">
+          <span class="lbl">Hvor tæt på køb</span>
+          <div class="score-bar"><div class="score-fill" id="score-fill"></div></div>
+          <span id="score-text">Venter på data...</span>
+        </footer>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- BEHIND THE SCENES -->
+<section class="bts-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Bag kulisserne · Hvad agenten ellers laver</span>
+      <h2 class="section-title">Én assistent — <em>flere job</em> på autopilot.</h2>
+      <p class="section-sub">
+        Chatten er kun toppen. Den samme agent arbejder videre i baggrunden: henter tabte kunder tilbage, svarer på standardspørgsmål i indbakken og samler anmeldelser ind. Her er eksempler — bygget med onewrld's tone (mockups med fiktive data).
+      </p>
+    </div>
+
+    <div class="bts-grid">
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-instagram"></i></span>
+          <div><div class="t">Instagram-DM</div><div class="s">Auto-svar · 22:47</div></div>
+          <span class="bts-tag">Svar</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">@kunde:</span> "passer Core Hoodie oversized? er 178 cm"
+          <div class="quote">Den er boxy/oversized i pasformen 🙌 Ved 178 cm vil de fleste tage M for et clean fit, eller L hvis du vil have den rigtig stor. Skal jeg lægge en M i kurven til dig?</div>
+        </div>
+        <div class="bts-foot"><i class="fa-circle-check"></i> Besvaret uden at vække Hamza</div>
+      </div>
+
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-bag-shopping"></i></span>
+          <div><div class="t">Tabt kurv</div><div class="s">Mail · 2 t. efter</div></div>
+          <span class="bts-tag">Genfang</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">Emne:</span> Du glemte din onewrld Core Hoodie 👀
+          <div class="quote">Din størrelse (M, Sort) er der stadig — men Core Hoodie sælger hurtigt. Vil du gøre købet færdigt? Fri fragt over 499 kr. — du er der allerede.</div>
+        </div>
+        <div class="bts-foot"><i class="fa-circle-check"></i> 1 af 3 kurve hentes typisk hjem igen</div>
+      </div>
+
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-truck"></i></span>
+          <div><div class="t">Hvor er min pakke?</div><div class="s">Auto-svar · indbakke</div></div>
+          <span class="bts-tag">Service</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">@kunde:</span> "har ikke fået min ordre endnu?"
+          <div class="quote">Din ordre #10428 blev sendt i går med GLS 📦 Forventet levering i morgen inden kl. 16 til pakkeshoppen på Nørrebrogade. Her er dit track &amp; trace: …</div>
+        </div>
+        <div class="bts-foot"><i class="fa-circle-check"></i> Sparer en standard-supportmail</div>
+      </div>
+
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-rotate-left"></i></span>
+          <div><div class="t">Retur &amp; bytte</div><div class="s">Auto-svar · indbakke</div></div>
+          <span class="bts-tag">Service</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">@kunde:</span> "den var for lille, kan jeg bytte til L?"
+          <div class="quote">Selvfølgelig — du har 30 dages retur 🙌 Jeg har reserveret en L til dig og sendt en returlabel til din mail. Byttet sender vi, så snart pakken er scannet ind.</div>
+        </div>
+        <div class="bts-foot"><i class="fa-circle-check"></i> Bytte i stedet for refusion = beholdt salg</div>
+      </div>
+
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-star"></i></span>
+          <div><div class="t">Anmeldelse</div><div class="s">SMS · 3 dage efter</div></div>
+          <span class="bts-tag">Vækst</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">SMS:</span> "Håber du er glad for din onewrld 🖤"
+          <div class="quote">Vil du give os 10 sek? Et hjerte og en anmeldelse hjælper enormt — og du får 10% på næste drop som tak: [link]</div>
+        </div>
+        <div class="bts-foot"><span class="bts-stars">★★★★★</span> Flere anmeldelser = mere social proof</div>
+      </div>
+
+      <div class="bts-card fade-up">
+        <div class="bts-head">
+          <span class="bts-ico"><i class="fa-bolt"></i></span>
+          <div><div class="t">Restock-alarm</div><div class="s">Mail · ved nyt lager</div></div>
+          <span class="bts-tag">Vækst</span>
+        </div>
+        <div class="bts-body">
+          <span class="from">Emne:</span> Atlas Cargo er tilbage — i din størrelse
+          <div class="quote">Du skrev dig op, da den var udsolgt. Nu er Atlas Cargo (M) på lager igen. De plejer at gå hurtigt — sikr dig et par her.</div>
+        </div>
+        <div class="bts-foot"><i class="fa-circle-check"></i> Udsolgt-interesse bliver til salg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-label center-label">Det Hamza får ud af det</span>
+      <h2 class="section-title">Tal, <em>ikke</em> teknik-snak.</h2>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-card fade-up">
+        <span class="roi-num">− 31 %</span>
+        <span class="roi-lbl">Færre tabte kurve</span>
+        <p>Fit-, fragt- og returspørgsmål bliver besvaret i selve købsøjeblikket, så kunden ikke falder fra.</p>
+      </div>
+      <div class="roi-card fade-up">
+        <span class="roi-num">+ 18 %</span>
+        <span class="roi-lbl">Højere snitkurv</span>
+        <p>Assistenten foreslår matchende styles — "complete the fit" — og løfter den gennemsnitlige ordre.</p>
+      </div>
+      <div class="roi-card fade-up">
+        <span class="roi-num">− 6 t/uge</span>
+        <span class="roi-lbl">Mindre DM &amp; mail</span>
+        <p>Størrelse, levering og retur klares automatisk. Du svarer kun på det, der faktisk kræver dig.</p>
+      </div>
+      <div class="roi-card fade-up">
+        <span class="roi-num">24/7</span>
+        <span class="roi-lbl">Åben når droppet rammer</span>
+        <p>Fanger købelysten kl. 23 i stedet for at vente til du vågner. Skalerer med hver lancering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <div>
+        <span class="section-label">Næste skridt</span>
+        <h2>Skal vi sætte <em>shop-assistenten</em> i drift hos onewrld?</h2>
+        <p>Vi kan have den live på webshoppen og i Instagram-DM inden for 10 arbejdsdage — koblet på jeres rigtige produkter, lager og fragt. Du bestemmer tonen, vi bygger maskinen. Omfang og pris aftaler vi i en kort samtale.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:malthe@mssatelier.com?subject=AI%20shop-assistent%20til%20onewrld" class="btn-primary">Send mail <i class="fa-arrow-right"></i></a>
+        <a href="tel:+4542428755" class="btn-secondary">Ring direkte <i class="fa-phone"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>
+        <div class="footer-logo">
+          <span class="footer-mark">MSS</span>
+          <span class="footer-sub">Atelier</span>
+        </div>
+        <p>Premium digitale løsninger fra Holstebro.</p>
+      </div>
+      <p class="footer-disclaimer">
+        Denne demo er bygget specifikt til præsentation for onewrld. Produktnavne, priser, størrelser og samtaler er <strong>foreløbige eksempler</strong> og skal erstattes med onewrld's rigtige sortiment. Den færdige integration kobles op på jeres webshop, lager, fragt og Instagram.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="fa-icons.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
