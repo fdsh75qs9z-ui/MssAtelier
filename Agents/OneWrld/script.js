@@ -492,6 +492,41 @@
     state.step = 'route';
   }
 
+  /* ============ AUTOPLAY WALKTHROUGH ============ */
+  const autoBtn = document.getElementById('autoplay-btn');
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  let autoOn = false;
+
+  async function typeInto(text) {
+    input.value = '';
+    for (const ch of text) { input.value += ch; await sleep(26); }
+    await sleep(220);
+  }
+
+  async function autoplay() {
+    autoOn = true;
+    autoBtn.classList.add('on');
+    autoBtn.innerHTML = '<span class="ap-ico">■</span> Stop afspilning';
+    init();
+    await sleep(3900);
+    const steps = ['Vis mig hoodies', 'Oversized · Sort', '182 cm', 'Core Hoodie', 'Tilføj Atlas Cargo Pants', 'Ja, send til min mail', 'hamza@onewrld.com'];
+    for (const s of steps) {
+      if (!autoOn) break;
+      await typeInto(s);
+      if (!autoOn) break;
+      await handleUserInput(s);
+      await sleep(1400);
+    }
+    stopAuto();
+  }
+
+  function stopAuto() {
+    autoOn = false;
+    if (autoBtn) { autoBtn.classList.remove('on'); autoBtn.innerHTML = '<span class="ap-ico">▶</span> Afspil demo (hands-free)'; }
+  }
+
+  if (autoBtn) autoBtn.addEventListener('click', () => { if (autoOn) stopAuto(); else autoplay(); });
+
   /* ============ EVENTS ============ */
   form.addEventListener('submit', (e) => { e.preventDefault(); const v = input.value.trim(); if (v) handleUserInput(v); });
   resetBtn.addEventListener('click', init);

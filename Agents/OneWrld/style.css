@@ -534,3 +534,40 @@ section { padding: 110px 0; position: relative; }
   .fade-up { opacity: 1; transform: none; transition: none; }
   * { scroll-behavior: auto; }
 }
+
+/* ============ BRAND ACCENT — skift disse til onewrld's farve ============ */
+:root { --brand: var(--gold); --brand-soft: var(--gold-soft); }
+
+/* PROOF STRIP */
+.proof-section { padding: 10px 0 0; }
+.proof-bar {
+  display: flex; flex-wrap: wrap; gap: 14px 38px; align-items: center; justify-content: center;
+  padding: 22px 28px;
+  border: 1px solid var(--line); border-radius: 14px;
+  background: var(--bg-2); box-shadow: var(--shadow-sm);
+}
+.proof-item { display: inline-flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--ink-dim); }
+.proof-item strong { color: var(--ink); }
+.proof-item i { color: var(--brand); font-size: 0.98rem; }
+.proof-stars { color: var(--brand-soft); letter-spacing: 2px; font-size: 0.95rem; }
+@media (max-width: 680px) { .proof-bar { gap: 12px 20px; padding: 18px; } .proof-item { font-size: 0.8rem; } }
+
+/* AUTOPLAY CONTROL */
+.demo-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: -30px 0 34px; }
+.autoplay-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px; border-radius: 100px;
+  border: 1px solid var(--line-strong); background: rgba(255,255,255,0.02);
+  color: var(--ink); font-size: 0.86rem; font-weight: 600;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+}
+.autoplay-btn:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-1px); }
+.autoplay-btn .ap-ico { color: var(--brand); font-size: 0.72rem; }
+.autoplay-btn.on { border-color: var(--brand); color: var(--brand); background: rgba(201,168,106,0.08); }
+.demo-hint { font-size: 0.82rem; color: var(--ink-mute); }
+@media (max-width: 560px) { .demo-controls { margin: -12px 0 26px; } }
+
+/* CTA GUARANTEES */
+.cta-guarantees { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+.cta-guarantees li { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--ink); }
+.cta-guarantees li i { color: var(--green); font-size: 0.88rem; flex-shrink: 0; }
