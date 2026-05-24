@@ -527,6 +527,35 @@
 
   if (autoBtn) autoBtn.addEventListener('click', () => { if (autoOn) stopAuto(); else autoplay(); });
 
+  /* ============ ROI CALCULATOR ============ */
+  const calcMsgs = document.getElementById('calc-msgs');
+  const calcAov = document.getElementById('calc-aov');
+  const calcAfter = document.getElementById('calc-after');
+  if (calcMsgs && calcAov && calcAfter) {
+    const out = {
+      msgs: document.getElementById('calc-msgs-out'),
+      aov: document.getElementById('calc-aov-out'),
+      after: document.getElementById('calc-after-out'),
+      rev: document.getElementById('calc-rev'),
+      saved: document.getElementById('calc-saved'),
+      carts: document.getElementById('calc-carts'),
+    };
+    const kr = (n) => n.toLocaleString('da-DK') + ' kr.';
+    const recalc = () => {
+      const msgs = +calcMsgs.value, aov = +calcAov.value, after = +calcAfter.value;
+      out.msgs.textContent = msgs;
+      out.aov.textContent = kr(aov);
+      out.after.textContent = after + ' %';
+      const weeklyExtraOrders = msgs * 0.05 + (msgs * after / 100) * 0.10;
+      const monthlyRevenue = Math.round((weeklyExtraOrders * 4.33 * aov * 1.15) / 100) * 100;
+      out.rev.textContent = '+ ' + kr(monthlyRevenue);
+      out.saved.textContent = '~ ' + Math.max(1, Math.round(msgs * 0.05)) + ' t';
+      out.carts.textContent = '~ ' + Math.round(msgs * 4.33 * 0.07);
+    };
+    [calcMsgs, calcAov, calcAfter].forEach((el) => el.addEventListener('input', recalc));
+    recalc();
+  }
+
   /* ============ EVENTS ============ */
   form.addEventListener('submit', (e) => { e.preventDefault(); const v = input.value.trim(); if (v) handleUserInput(v); });
   resetBtn.addEventListener('click', init);

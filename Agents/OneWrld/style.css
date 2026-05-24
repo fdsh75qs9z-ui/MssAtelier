@@ -1,28 +1,32 @@
 /* =======================================================
    onewrld × MSS Atelier — AI shop-assistant demo
-   Dark editorial theme, MSS brand language (Fraunces + gold)
+   Dark, raw streetwear theme (Archivo + bone, swappable brand accent)
    ======================================================= */
 
 :root {
-  --bg: #08080a;
-  --bg-2: #0e0e11;
-  --bg-3: #141418;
-  --bg-4: #1b1b20;
-  --ink: #f1efe9;
-  --ink-dim: #9d9a92;
-  --ink-mute: #66635c;
-  --line: rgba(241, 239, 233, 0.08);
-  --line-strong: rgba(241, 239, 233, 0.16);
-  --gold: #c9a86a;
-  --gold-soft: #e6c98d;
-  --gold-deep: #a8854f;
-  --green: #5fcf80;
-  --green-soft: rgba(95, 207, 128, 0.12);
+  --bg: #0a0a0b;
+  --bg-2: #0e0e10;
+  --bg-3: #141417;
+  --bg-4: #1c1c20;
+  --ink: #f4f2ec;
+  --ink-dim: #9b988f;
+  --ink-mute: #62605a;
+  --line: rgba(244, 242, 236, 0.10);
+  --line-strong: rgba(244, 242, 236, 0.22);
+  --brand: #f4f2ec;        /* onewrld-accent — skift til brandfarve (hex) */
+  --brand-ink: #0b0b0c;    /* tekst på brand-flader */
+  --brand-soft: #ffffff;
+  --gold: var(--brand);
+  --gold-soft: #ffffff;
+  --gold-deep: #b9b6ad;
+  --green: #62d27e;
+  --green-soft: rgba(98, 210, 126, 0.12);
+  --red: #e0654e;
   --blue: #6ea8fe;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.4);
-  --shadow-md: 0 18px 50px -18px rgba(0,0,0,.7), 0 6px 16px rgba(0,0,0,.4);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.45);
+  --shadow-md: 0 18px 50px -18px rgba(0,0,0,.7), 0 6px 16px rgba(0,0,0,.45);
   --shadow-lg: 0 50px 120px -24px rgba(0,0,0,.85), 0 24px 50px -20px rgba(0,0,0,.6);
-  --display: 'Fraunces', 'Times New Roman', serif;
+  --display: 'Archivo', system-ui, sans-serif;
   --sans: 'Manrope', system-ui, sans-serif;
   --container: 1280px;
 }
@@ -535,8 +539,7 @@ section { padding: 110px 0; position: relative; }
   * { scroll-behavior: auto; }
 }
 
-/* ============ BRAND ACCENT — skift disse til onewrld's farve ============ */
-:root { --brand: var(--gold); --brand-soft: var(--gold-soft); }
+/* ============ BRAND ACCENT — defineret i :root øverst (skift --brand) ============ */
 
 /* PROOF STRIP */
 .proof-section { padding: 10px 0 0; }
@@ -571,3 +574,86 @@ section { padding: 110px 0; position: relative; }
 .cta-guarantees { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
 .cta-guarantees li { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--ink); }
 .cta-guarantees li i { color: var(--green); font-size: 0.88rem; flex-shrink: 0; }
+
+/* ============================================================
+   STREETWEAR OVERRIDES — bold grotesque, uppercase, sharp edges
+   ============================================================ */
+.nav-logo-mark, .footer-mark { text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
+.nav-logo-sub, .footer-sub { font-style: normal; font-weight: 700; text-transform: lowercase; color: var(--ink-dim); }
+.nav-client { text-transform: lowercase; font-weight: 600; }
+
+.hero-eyebrow-text, .section-label, .stat-lbl, .roi-lbl, .bts-tag, .nav-pill,
+.chap-time, .btn-primary, .btn-secondary, .pack-tier { font-weight: 700; }
+.hero-eyebrow-line { height: 2px; }
+
+.hero-title { text-transform: uppercase; font-weight: 800; line-height: 0.9; letter-spacing: -0.015em; }
+.hero-title em { font-style: normal; font-weight: 800; color: var(--brand-ink); background: var(--brand);
+  padding: 0 .12em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+.section-title { text-transform: uppercase; font-weight: 800; letter-spacing: -0.01em; }
+.section-title em { font-style: normal; color: var(--brand); border-bottom: 3px solid var(--brand); padding-bottom: 1px; }
+
+.video-aside-meta h3, .cta-card h2 { text-transform: uppercase; font-weight: 800; }
+.cta-card h2 em, .video-aside-meta h3 em { font-style: normal; color: var(--brand); }
+
+/* sharp edges */
+.btn-primary, .btn-secondary { border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+.btn-primary { background: var(--ink); color: var(--brand-ink); }
+.btn-primary:hover { background: #fff; box-shadow: 0 14px 34px -14px rgba(244,242,236,.32); }
+.bts-card, .roi-card, .ticker, .proof-bar, .cta-card, .video-frame { border-radius: 4px; }
+.chat-input-row input, .chat-suggestions button, .nav-pill, .nav-client,
+.autoplay-btn, .bts-tag, .rec, .rec-thumb { border-radius: 2px; }
+.bts-ico { border-radius: 3px; }
+.avatar-glyph { font-family: var(--sans); font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.02em; }
+.score-fill { background: var(--brand); }
+.roi-num, .stat-num { font-weight: 800; }
+
+/* ============ ROI CALCULATOR ============ */
+.calc-section { background: linear-gradient(180deg, transparent, rgba(20,20,24,.5), transparent); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.calc { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: stretch; max-width: 1000px; margin: 0 auto; }
+@media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+.calc-inputs { display: flex; flex-direction: column; gap: 26px; padding: 32px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; }
+.calc-field { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 14px; }
+.calc-field > span { grid-column: 1 / -1; font-size: 0.82rem; color: var(--ink-dim); font-weight: 600; }
+.calc-field output { grid-column: 2; font-family: var(--display); font-weight: 800; color: var(--brand); font-size: 1.05rem; min-width: 86px; text-align: right; }
+.calc-field input[type=range] { grid-column: 1; -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border-radius: 2px; background: var(--bg-4); outline: none; }
+.calc-field input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--line-strong); }
+.calc-field input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--bg); }
+.calc-results { display: flex; flex-direction: column; justify-content: center; padding: 32px; background: linear-gradient(160deg, #16161a, #0c0c0e); border: 1px solid var(--line-strong); border-radius: 4px; }
+.calc-kpi { margin-bottom: 18px; }
+.calc-num { display: block; font-family: var(--display); font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; color: var(--brand); }
+.calc-lbl { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-top: 8px; font-weight: 700; }
+.calc-row { display: flex; align-items: baseline; gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-dim); }
+.calc-row span { font-family: var(--display); font-weight: 800; color: var(--ink); font-size: 1.1rem; }
+.calc-note { margin-top: 16px; font-size: 0.76rem; color: var(--ink-mute); line-height: 1.6; }
+
+/* ============ COMPARE (uden vs. med) ============ */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 760px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-col { padding: 30px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); }
+.compare-col.before { opacity: 0.92; }
+.compare-col.after { border-color: var(--line-strong); background: linear-gradient(160deg, #15151a, #0c0c0e); }
+.compare-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.co-tag { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 800; padding: 5px 12px; border-radius: 2px; border: 1px solid var(--red); color: var(--red); }
+.co-tag.on { border-color: var(--green); color: var(--green); }
+.co-time { font-family: var(--display); font-weight: 700; color: var(--ink-mute); font-size: 0.9rem; }
+.compare-col ul { display: flex; flex-direction: column; gap: 12px; }
+.compare-col li { position: relative; padding-left: 22px; font-size: 0.92rem; color: var(--ink-dim); line-height: 1.55; }
+.compare-col li::before { content: ''; position: absolute; left: 4px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-mute); }
+.compare-col.after li::before { background: var(--green); }
+.compare-foot { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 10px; font-size: 0.86rem; font-weight: 700; }
+.compare-foot.lost { color: var(--red); } .compare-foot.lost i { color: var(--red); }
+.compare-foot.won { color: var(--green); } .compare-foot.won i { color: var(--green); }
+
+/* ============ FAQ ============ */
+.faq { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); overflow: hidden; }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; font-weight: 700; font-size: 0.98rem; color: var(--ink); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary i { color: var(--brand); transition: transform .35s cubic-bezier(.2,.8,.2,1); flex-shrink: 0; transform: rotate(90deg); }
+.faq-item[open] summary i { transform: rotate(-90deg); }
+.faq-item p { padding: 0 24px 22px; color: var(--ink-dim); font-size: 0.92rem; line-height: 1.7; }
+
+/* scene link */
+.scene-link { display: inline-flex; align-items: center; gap: 8px; margin-left: 14px; font-size: 0.82rem; color: var(--ink-dim); border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; }
+.scene-link:hover { color: var(--brand); border-color: var(--brand); }

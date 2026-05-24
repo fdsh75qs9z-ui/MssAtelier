@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -80,6 +80,7 @@
     <div class="demo-controls">
       <button id="autoplay-btn" class="autoplay-btn" type="button"><span class="ap-ico">▶</span> Afspil demo (hands-free)</button>
       <span class="demo-hint">Se agenten køre en hel samtale af sig selv — eller skriv i chatten.</span>
+      <a class="scene-link" href="scene.html" target="_blank" rel="noopener">Åbn fuldskærms-reel <i class="fa-arrow-up-right"></i></a>
     </div>
 
     <div class="demo-stage">
@@ -214,6 +215,38 @@
   </div>
 </section>
 
+<!-- COMPARE -->
+<section class="compare-section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-label center-label">Uden vs. med</span>
+      <h2 class="section-title">Samme kunde. <em>To udfald.</em></h2>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col before fade-up">
+        <div class="compare-head"><span class="co-tag">Uden agent</span><span class="co-time">23:14</span></div>
+        <ul>
+          <li>Kunde skriver "har I den i M?" på Instagram kl. 23 — der er ingen til at svare.</li>
+          <li>Beskeden drukner i indbakken til næste formiddag.</li>
+          <li>Imens finder kunden noget andet. Kurven bliver aldrig til et køb.</li>
+          <li>Standardspørgsmål om fragt og retur fylder din dag.</li>
+        </ul>
+        <div class="compare-foot lost"><i class="fa-arrow-up-right"></i> Tabt salg + spildt tid</div>
+      </div>
+      <div class="compare-col after fade-up">
+        <div class="compare-head"><span class="co-tag on">Med agent</span><span class="co-time">23:14</span></div>
+        <ul>
+          <li>Agenten svarer på 20 sekunder og rammer den rigtige størrelse.</li>
+          <li>Foreslår et matchende fit — snitkurven stiger.</li>
+          <li>Lægger i kurv, guider til betaling og fanger kundens mail.</li>
+          <li>Fragt og retur klares automatisk — mens du sover.</li>
+        </ul>
+        <div class="compare-foot won"><i class="fa-circle-check"></i> Salg lukket + 0 min af din tid</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ROI -->
 <section id="roi">
   <div class="container">
@@ -243,6 +276,77 @@
         <span class="roi-lbl">Åben når droppet rammer</span>
         <p>Fanger købelysten kl. 23 i stedet for at vente til du vågner. Skalerer med hver lancering.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="calc-section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-label center-label">Regn på det</span>
+      <h2 class="section-title">Hvad er det <em>værd</em> for onewrld?</h2>
+      <p class="section-sub" style="margin:0 auto;">Tast jeres egne tal — så regner vi et forsigtigt estimat på, hvad shop-assistenten kan tjene hjem. Antagelserne kalibrerer vi sammen.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-inputs">
+        <label class="calc-field">
+          <span>Henvendelser om ugen (DM + mail + chat)</span>
+          <input type="range" id="calc-msgs" min="20" max="600" step="10" value="140" />
+          <output id="calc-msgs-out">140</output>
+        </label>
+        <label class="calc-field">
+          <span>Gennemsnitlig ordre</span>
+          <input type="range" id="calc-aov" min="150" max="2000" step="50" value="550" />
+          <output id="calc-aov-out">550 kr.</output>
+        </label>
+        <label class="calc-field">
+          <span>Andel henvendelser udenfor åbningstid</span>
+          <input type="range" id="calc-after" min="0" max="80" step="5" value="45" />
+          <output id="calc-after-out">45 %</output>
+        </label>
+      </div>
+      <div class="calc-results">
+        <div class="calc-kpi">
+          <span class="calc-num" id="calc-rev">–</span>
+          <span class="calc-lbl">Estimeret ekstra omsætning / måned</span>
+        </div>
+        <div class="calc-row"><span id="calc-saved">–</span> sparet support-tid / uge</div>
+        <div class="calc-row"><span id="calc-carts">–</span> reddede kurve / måned</div>
+        <p class="calc-note">Forsigtigt estimat: agenten fanger en del af henvendelserne udenfor åbningstid, svarer instant i købsøjeblikket og løfter snitkurven via "complete the fit". Tallene er antagelser — vi kalibrerer til onewrld's rigtige data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-label center-label">Spørgsmål?</span>
+      <h2 class="section-title">Det du <em>tænker</em> lige nu.</h2>
+    </div>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Lyder den som en robot? <i class="fa-arrow-right"></i></summary>
+        <p>Nej. Vi træner den på onewrld's tone — emojis, slang, korte svar — så den lyder som jer, ikke som en hjælpe-bot. Du godkender tonen, før den går live.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Skal jeg selv lave noget teknisk? <i class="fa-arrow-right"></i></summary>
+        <p>Nej. Vi kobler den på jeres webshop (fx Shopify) og Instagram, sætter den op og tester. Du skal bare give grønt lys på tone og svar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Hvad med kundedata og GDPR? <i class="fa-arrow-right"></i></summary>
+        <p>Data bliver i jeres egne systemer og behandles efter reglerne. Intet videresælges. Agenten bruger kun det, den skal, for at hjælpe kunden.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Hvad hvis den ikke kan svare? <i class="fa-arrow-right"></i></summary>
+        <p>Så siger den det ærligt og sender samtalen videre til jer med det samme — og vi træner den på de tilfælde, så den bliver skarpere over tid.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Hvad koster det? <i class="fa-arrow-right"></i></summary>
+        <p>Fast pris og ingen binding. Det præcise omfang — kanaler, sprog, integrationer — aftaler vi i et kort kald, så I kun betaler for det, I bruger.</p>
+      </details>
     </div>
   </div>
 </section>
