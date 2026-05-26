@@ -593,25 +593,30 @@ section { padding: 110px 0; position: relative; }
 .hero-eyebrow-line { height: 2px; }
 
 .hero-title { text-transform: uppercase; font-weight: 800; line-height: 0.9; letter-spacing: -0.015em; }
-.hero-title em { font-style: normal; font-weight: 800; color: var(--brand-ink); background: var(--brand);
-  padding: 0 .12em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* emphasis = flydende gradient-tekst, ikke firkantede farveblokke */
+.hero-title em, .section-title em, .cta-card h2 em, .video-aside-meta h3 em {
+  font-style: normal; font-weight: 800;
+  background: linear-gradient(105deg, var(--brand-soft), var(--brand) 72%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--brand-soft);
+}
 
 .section-title { text-transform: uppercase; font-weight: 800; letter-spacing: -0.01em; }
-.section-title em { font-style: normal; color: var(--brand); border-bottom: 3px solid var(--brand); padding-bottom: 1px; }
-
 .video-aside-meta h3, .cta-card h2 { text-transform: uppercase; font-weight: 800; }
-.cta-card h2 em, .video-aside-meta h3 em { font-style: normal; color: var(--brand); }
 
-/* sharp edges */
-.btn-primary, .btn-secondary { border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
-.btn-primary { background: var(--brand); color: var(--brand-ink); }
-.btn-primary:hover { background: var(--brand); filter: brightness(1.12); box-shadow: 0 16px 40px -16px var(--brand-glow); }
-.bts-card, .roi-card, .ticker, .proof-bar, .cta-card, .video-frame { border-radius: 4px; }
-.chat-input-row input, .chat-suggestions button, .nav-pill, .nav-client,
-.autoplay-btn, .bts-tag, .rec, .rec-thumb { border-radius: 2px; }
-.bts-ico { border-radius: 3px; }
+/* blødere farve: gradienter, skær og runde kanter i stedet for flade blokke */
+.btn-primary, .btn-secondary { border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.btn-primary { background: linear-gradient(125deg, var(--brand-soft), var(--brand) 55%, var(--brand-deep)); color: var(--brand-ink); box-shadow: 0 12px 34px -14px var(--brand-glow); }
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 20px 46px -14px var(--brand-glow); }
+.bts-card, .roi-card, .ticker, .proof-bar, .cta-card, .video-frame,
+.calc-inputs, .calc-results, .compare-col, .faq-item { border-radius: 14px; }
+.chat-input-row input { border-radius: 100px; }
+.chat-suggestions button, .nav-pill, .nav-client, .autoplay-btn, .bts-tag, .co-tag { border-radius: 100px; }
+.rec, .rec-thumb { border-radius: 12px; }
+.bts-ico { border-radius: 12px; background: linear-gradient(135deg, var(--brand-soft), var(--brand-deep)); color: var(--brand-ink); }
 .avatar-glyph { font-family: var(--sans); font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.02em; }
-.score-fill { background: var(--brand); }
+.score-fill { background: linear-gradient(90deg, var(--brand-deep), var(--brand-soft)); }
 .roi-num, .stat-num { font-weight: 800; }
 
 /* ============ ROI CALCULATOR ============ */

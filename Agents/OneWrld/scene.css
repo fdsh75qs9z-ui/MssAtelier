@@ -4,7 +4,7 @@
   --ink: #f4f2ec; --ink-dim: #9b988f; --ink-mute: #62605a;
   --line: rgba(244,242,236,0.10); --line-strong: rgba(244,242,236,0.22);
   /* ===== ONEWRLD BRAND — skift KUN her (samme som i style.css) ===== */
-  --brand: #c8142b; --brand-ink: #ffffff; --brand-deep: #5c0a14; --green: #62d27e;
+  --brand: #c8142b; --brand-soft: #ff3a4d; --brand-ink: #ffffff; --brand-deep: #5c0a14; --green: #62d27e;
   --display: 'Archivo', system-ui, sans-serif; --sans: 'Manrope', system-ui, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,10 +35,10 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); overf
 .scene-head { text-align: center; }
 .scene-head .tag {
   display: inline-block; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--ink); border: 1px solid var(--line-strong); border-radius: 2px; padding: 6px 14px; margin-bottom: 22px; font-weight: 700;
+  color: var(--ink); border: 1px solid var(--line-strong); border-radius: 100px; padding: 6px 14px; margin-bottom: 22px; font-weight: 700;
 }
 .scene-head h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.8rem, 4.6vw, 3.4rem); line-height: 1; letter-spacing: -0.015em; }
-.scene-head h2 em { font-style: normal; color: var(--brand-ink); background: var(--brand); padding: 0 .14em; }
+.scene-head h2 em { font-style: normal; background: linear-gradient(105deg, var(--brand-soft), var(--brand) 72%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* INTRO / OUTRO */
 .intro { text-align: center; }
@@ -48,7 +48,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); overf
 .wordmark em { font-style: normal; color: var(--ink-mute); }
 .intro .by { margin-top: 22px; font-size: clamp(1rem, 2.2vw, 1.4rem); color: var(--ink-dim); }
 .intro .by strong, .intro .contact { color: var(--ink); }
-.intro .contact { margin-top: 26px; display: inline-block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid var(--line-strong); border-radius: 2px; padding: 12px 22px; }
+.intro .contact { margin-top: 26px; display: inline-block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid var(--line-strong); border-radius: 100px; padding: 12px 22px; }
 
 /* PHONE + CHAT */
 .phone { width: 340px; max-width: 86vw; background: #1c1c20; border: 1px solid #2a2a30; border-radius: 38px; padding: 11px; box-shadow: 0 50px 120px -30px rgba(0,0,0,.85); position: relative; }
@@ -76,7 +76,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); overf
 .bts-card { padding: 24px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); opacity: 0; transform: translateY(16px); }
 .scene.active .bts-card { animation: rise .6s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * .18s + .2s); }
 @keyframes rise { to { opacity: 1; transform: none; } }
-.bc-ico { width: 38px; height: 38px; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: var(--brand); color: var(--brand-ink); font-family: var(--display); font-weight: 800; font-size: 0.9rem; margin-bottom: 16px; }
+.bc-ico { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--brand-soft), var(--brand-deep)); color: var(--brand-ink); font-family: var(--display); font-weight: 800; font-size: 0.9rem; margin-bottom: 16px; }
 .bts-card strong { display: block; font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em; }
 .bts-card p { font-size: 0.84rem; color: var(--ink-dim); line-height: 1.55; }
 
@@ -91,7 +91,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); overf
 /* CONTROLS */
 .reel-controls { position: fixed; inset: 0; z-index: 30; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: rgba(10,10,11,0.82); backdrop-filter: blur(8px); }
 .reel-controls.show { display: flex; }
-.reel-controls button { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; padding: 15px 30px; border-radius: 2px; background: var(--brand); color: var(--brand-ink); border: 0; cursor: pointer; }
+.reel-controls button { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; padding: 15px 30px; border-radius: 12px; background: linear-gradient(125deg, var(--brand-soft), var(--brand-deep)); color: var(--brand-ink); border: 0; cursor: pointer; }
 .reel-controls a { font-size: 0.85rem; color: var(--ink-dim); }
 .reel-controls a:hover { color: var(--ink); }
 
