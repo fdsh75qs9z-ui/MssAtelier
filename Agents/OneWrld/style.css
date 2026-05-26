@@ -14,10 +14,10 @@
   --line: rgba(244, 242, 236, 0.10);
   --line-strong: rgba(244, 242, 236, 0.22);
   /* ===== ONEWRLD BRAND — skift KUN her (samme blok findes i scene.css) ===== */
-  --brand: #3b5bf5;        /* onewrld primær accent — sæt til jeres hex */
+  --brand: #c8142b;        /* onewrld accent — blod-rød (sæt til jeres hex) */
   --brand-ink: #ffffff;    /* tekst oven på brand-flader */
-  --brand-soft: #8aa0ff;   /* lysere variant (tekst-accent / gradient-slut) */
-  --brand-deep: #2640c0;   /* mørkere variant (gradient-start) */
+  --brand-soft: #ff3a4d;   /* hot/alarm-rød (tekst-accent / gradient-slut) */
+  --brand-deep: #5c0a14;   /* oxblood (gradient-start) */
   --brand-wash: color-mix(in srgb, var(--brand) 13%, transparent);  /* svage baggrunde */
   --brand-edge: color-mix(in srgb, var(--brand) 32%, transparent);  /* kanter */
   --brand-glow: color-mix(in srgb, var(--brand) 50%, transparent);  /* skær/skygger */

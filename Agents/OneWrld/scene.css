@@ -4,7 +4,7 @@
   --ink: #f4f2ec; --ink-dim: #9b988f; --ink-mute: #62605a;
   --line: rgba(244,242,236,0.10); --line-strong: rgba(244,242,236,0.22);
   /* ===== ONEWRLD BRAND — skift KUN her (samme som i style.css) ===== */
-  --brand: #3b5bf5; --brand-ink: #ffffff; --brand-deep: #2640c0; --green: #62d27e;
+  --brand: #c8142b; --brand-ink: #ffffff; --brand-deep: #5c0a14; --green: #62d27e;
   --display: 'Archivo', system-ui, sans-serif; --sans: 'Manrope', system-ui, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
