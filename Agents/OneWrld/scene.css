@@ -3,7 +3,8 @@
   --bg: #0a0a0b; --bg-2: #0e0e10; --bg-3: #15151a;
   --ink: #f4f2ec; --ink-dim: #9b988f; --ink-mute: #62605a;
   --line: rgba(244,242,236,0.10); --line-strong: rgba(244,242,236,0.22);
-  --brand: #f4f2ec; --brand-ink: #0b0b0c; --green: #62d27e;
+  /* ===== ONEWRLD BRAND — skift KUN her (samme som i style.css) ===== */
+  --brand: #3b5bf5; --brand-ink: #ffffff; --brand-deep: #2640c0; --green: #62d27e;
   --display: 'Archivo', system-ui, sans-serif; --sans: 'Manrope', system-ui, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,7 +55,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); overf
 .phone-notch { position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 96px; height: 20px; background: #050507; border-radius: 100px; z-index: 5; }
 .phone-screen { background: #0c0c0f; border-radius: 28px; overflow: hidden; height: 60vh; max-height: 560px; min-height: 380px; display: flex; flex-direction: column; }
 .chat-header { display: flex; align-items: center; gap: 11px; padding: 42px 16px 13px; background: linear-gradient(180deg, rgba(244,242,236,0.10), transparent); border-bottom: 1px solid var(--line); }
-.chat-header .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #fff, #b9b6ad); color: var(--brand-ink); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 0.68rem; }
+.chat-header .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--brand-deep)); color: var(--brand-ink); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 0.68rem; }
 .chat-header .meta { display: flex; flex-direction: column; line-height: 1.2; }
 .chat-header .meta strong { font-size: 0.84rem; }
 .chat-header .meta span { font-size: 0.68rem; color: var(--ink-mute); margin-top: 2px; }
