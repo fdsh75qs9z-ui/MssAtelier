@@ -4,37 +4,37 @@
    ======================================================= */
 
 :root {
-  --bg: #0a0a0b;
-  --bg-2: #0e0e10;
-  --bg-3: #141417;
-  --bg-4: #1c1c20;
-  --ink: #f4f2ec;
-  --ink-dim: #9b988f;
-  --ink-mute: #62605a;
-  --line: rgba(244, 242, 236, 0.10);
-  --line-strong: rgba(244, 242, 236, 0.22);
+  /* warm near-black + bone — papir, ikke skærm */
+  --bg: #100c0b;
+  --bg-2: #16110f;
+  --bg-3: #1c1613;
+  --bg-4: #251c18;
+  --ink: #ece4d8;
+  --ink-dim: #a39a8d;
+  --ink-mute: #6e655b;
+  --line: rgba(236, 228, 216, 0.10);
+  --line-strong: rgba(236, 228, 216, 0.20);
   /* ===== ONEWRLD BRAND — skift KUN her (samme blok findes i scene.css) ===== */
-  --brand: #c8142b;        /* onewrld accent — blod-rød (sæt til jeres hex) */
-  --brand-ink: #ffffff;    /* tekst oven på brand-flader */
-  --brand-soft: #ff3a4d;   /* hot/alarm-rød (tekst-accent / gradient-slut) */
-  --brand-deep: #5c0a14;   /* oxblood (gradient-start) */
-  --brand-wash: color-mix(in srgb, var(--brand) 13%, transparent);  /* svage baggrunde */
-  --brand-edge: color-mix(in srgb, var(--brand) 32%, transparent);  /* kanter */
-  --brand-glow: color-mix(in srgb, var(--brand) 50%, transparent);  /* skær/skygger */
+  --brand: #b23a30;        /* onewrld accent — dæmpet mursten-rød (sæt til jeres hex) */
+  --brand-ink: #fbf3e9;    /* varm hvid oven på brand-flader */
+  --brand-soft: #cf5a4c;   /* lysere variant (accent-tekst) */
+  --brand-deep: #6f231d;   /* dyb oxblood */
+  --brand-wash: color-mix(in srgb, var(--brand) 10%, transparent);  /* svage baggrunde */
+  --brand-edge: color-mix(in srgb, var(--brand) 28%, transparent);  /* kanter */
   /* eksisterende regler peger på --gold* og følger nu automatisk --brand */
   --gold: var(--brand);
   --gold-soft: var(--brand-soft);
   --gold-deep: var(--brand-deep);
-  --green: #62d27e;
-  --green-soft: rgba(98, 210, 126, 0.12);
-  --red: #e0654e;
+  --green: #6cb98a;
+  --green-soft: rgba(108, 185, 138, 0.12);
+  --red: #c2563f;
   --blue: #6ea8fe;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.45);
-  --shadow-md: 0 18px 50px -18px rgba(0,0,0,.7), 0 6px 16px rgba(0,0,0,.45);
-  --shadow-lg: 0 50px 120px -24px rgba(0,0,0,.85), 0 24px 50px -20px rgba(0,0,0,.6);
-  --display: 'Archivo', system-ui, sans-serif;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.5);
+  --shadow-md: 0 16px 44px -20px rgba(0,0,0,.72), 0 4px 12px rgba(0,0,0,.4);
+  --shadow-lg: 0 44px 110px -28px rgba(0,0,0,.86), 0 18px 44px -22px rgba(0,0,0,.6);
+  --display: 'Newsreader', Georgia, 'Times New Roman', serif;
   --sans: 'Manrope', system-ui, sans-serif;
-  --container: 1280px;
+  --container: 1220px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,8 +42,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
   background:
-    radial-gradient(900px circle at 15% -5%, var(--brand-wash), transparent 55%),
-    radial-gradient(800px circle at 95% 8%, rgba(110,90,150,0.08), transparent 55%),
+    radial-gradient(1100px circle at 12% -8%, var(--brand-wash), transparent 60%),
     var(--bg);
   color: var(--ink);
   line-height: 1.65;
@@ -59,15 +58,11 @@ img, video { max-width: 100%; display: block; }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
 main, nav, footer { position: relative; }
 
-/* faint grid texture */
+/* analog paper grain — varme, ikke skærm */
 body::before {
   content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(241,239,233,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(241,239,233,.02) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at 50% 0%, black 10%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 10%, transparent 75%);
+  opacity: .04; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 main, nav, footer { z-index: 1; }
 
@@ -76,7 +71,7 @@ main, nav, footer { z-index: 1; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 40px;
-  background: rgba(8, 8, 10, 0.72);
+  background: rgba(16, 12, 11, 0.78);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -225,7 +220,7 @@ section { padding: 110px 0; position: relative; }
 .chat-avatar {
   position: relative;
   width: 38px; height: 38px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-soft), var(--gold-deep));
+  background: var(--brand);
   display: flex; align-items: center; justify-content: center;
 }
 .avatar-glyph { font-family: var(--display); font-weight: 600; color: var(--brand-ink); font-size: 0.95rem; }
@@ -275,7 +270,7 @@ section { padding: 110px 0; position: relative; }
 .msg.bot strong { color: var(--gold-soft); }
 .msg.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  background: var(--brand);
   color: var(--brand-ink);
   border-bottom-right-radius: 6px;
   font-weight: 500;
@@ -582,42 +577,55 @@ section { padding: 110px 0; position: relative; }
 .cta-guarantees li i { color: var(--green); font-size: 0.88rem; flex-shrink: 0; }
 
 /* ============================================================
-   STREETWEAR OVERRIDES — bold grotesque, uppercase, sharp edges
+   EDITORIAL — serif overskrifter, ægte kursiv, dæmpet & matte.
+   Labels i lille sans-versal; al farve brugt sparsomt som blæk.
    ============================================================ */
-.nav-logo-mark, .footer-mark { text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
-.nav-logo-sub, .footer-sub { font-style: normal; font-weight: 700; text-transform: lowercase; color: var(--ink-dim); }
-.nav-client { text-transform: lowercase; font-weight: 600; }
 
-.hero-eyebrow-text, .section-label, .stat-lbl, .roi-lbl, .bts-tag, .nav-pill,
-.chap-time, .btn-primary, .btn-secondary, .pack-tier { font-weight: 700; }
-.hero-eyebrow-line { height: 2px; }
+/* wordmark: sans-versal, tæt */
+.nav-logo-mark, .footer-mark { font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.02em; font-weight: 700; }
+.nav-logo-sub, .footer-sub { font-family: var(--sans); font-style: normal; font-weight: 500; text-transform: lowercase; color: var(--ink-dim); }
+.nav-client { font-family: var(--sans); text-transform: lowercase; font-weight: 500; }
 
-.hero-title { text-transform: uppercase; font-weight: 800; line-height: 0.9; letter-spacing: -0.015em; }
+/* små labels: sans, tracket versal — det eneste sted vi råber */
+.hero-eyebrow-text, .section-label, .stat-lbl, .roi-lbl, .calc-lbl, .bts-tag,
+.nav-pill, .co-tag, .chap-time, .proof-item, .demo-hint, .form-label {
+  font-family: var(--sans);
+}
+.hero-eyebrow-line { height: 1px; }
 
-/* emphasis = flydende gradient-tekst, ikke firkantede farveblokke */
+/* overskrifter: serif, normal case, rolige vægte */
+.hero-title, .section-title, .video-aside-meta h3, .cta-card h2, .calc-num, .roi-num, .stat-num {
+  font-family: var(--display); text-transform: none; letter-spacing: -0.01em;
+}
+.hero-title { font-weight: 400; line-height: 1.0; }
+.section-title { font-weight: 400; }
+
+/* emphasis = ægte serif-kursiv i brand-farve. Ingen blokke, ingen gradient. */
 .hero-title em, .section-title em, .cta-card h2 em, .video-aside-meta h3 em {
-  font-style: normal; font-weight: 800;
-  background: linear-gradient(105deg, var(--brand-soft), var(--brand) 72%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: var(--brand-soft);
+  font-style: italic; font-weight: 400; color: var(--brand-soft);
+  -webkit-text-fill-color: currentColor; background: none;
 }
 
-.section-title { text-transform: uppercase; font-weight: 800; letter-spacing: -0.01em; }
-.video-aside-meta h3, .cta-card h2 { text-transform: uppercase; font-weight: 800; }
+/* knapper: matte, rolige, lille radius — som tryk på papir */
+.btn-primary, .btn-secondary { border-radius: 4px; text-transform: none; letter-spacing: 0.01em; font-weight: 600; }
+.btn-primary { background: var(--brand); color: var(--brand-ink); box-shadow: none; }
+.btn-primary:hover { background: var(--brand-deep); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn-secondary { border-color: var(--line-strong); }
+.btn-secondary:hover { border-color: var(--brand-soft); color: var(--brand-soft); }
 
-/* blødere farve: gradienter, skær og runde kanter i stedet for flade blokke */
-.btn-primary, .btn-secondary { border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-.btn-primary { background: linear-gradient(125deg, var(--brand-soft), var(--brand) 55%, var(--brand-deep)); color: var(--brand-ink); box-shadow: 0 12px 34px -14px var(--brand-glow); }
-.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 20px 46px -14px var(--brand-glow); }
+/* flader: lille, ensartet radius — designet objekt, ikke app-bobler */
 .bts-card, .roi-card, .ticker, .proof-bar, .cta-card, .video-frame,
-.calc-inputs, .calc-results, .compare-col, .faq-item { border-radius: 14px; }
-.chat-input-row input { border-radius: 100px; }
-.chat-suggestions button, .nav-pill, .nav-client, .autoplay-btn, .bts-tag, .co-tag { border-radius: 100px; }
-.rec, .rec-thumb { border-radius: 12px; }
-.bts-ico { border-radius: 12px; background: linear-gradient(135deg, var(--brand-soft), var(--brand-deep)); color: var(--brand-ink); }
-.avatar-glyph { font-family: var(--sans); font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.02em; }
-.score-fill { background: linear-gradient(90deg, var(--brand-deep), var(--brand-soft)); }
-.roi-num, .stat-num { font-weight: 800; }
+.calc-inputs, .calc-results, .compare-col, .faq-item, .rec, .rec-thumb { border-radius: 6px; }
+.chat-input-row input, .nav-pill, .nav-client, .co-tag,
+.chat-suggestions button, .autoplay-btn { border-radius: 100px; }
+.bts-tag { border-radius: 3px; }
+.bts-ico { border-radius: 5px; background: var(--brand-wash); color: var(--brand-soft); }
+.avatar-glyph { font-family: var(--sans); font-weight: 700; text-transform: lowercase; font-size: 0.72rem; letter-spacing: 0; }
+.score-fill { background: var(--brand); }
+.roi-num, .stat-num, .calc-num { font-weight: 400; }
+
+/* small-caps labels beholder deres tracking; serif-tal er rolige */
+.section-label, .roi-lbl, .stat-lbl, .calc-lbl, .hero-eyebrow-text { font-weight: 600; }
 
 /* ============ ROI CALCULATOR ============ */
 .calc-section { background: linear-gradient(180deg, transparent, rgba(20,20,24,.5), transparent); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
